@@ -1,0 +1,38 @@
+<div class="entrance-layout">
+  <div class="entrance-heading">
+    <h1>Application name</h1>
+  </div>
+  <div class="entrance-form">
+    <div class="form-heading">
+      <h2>Registration</h2>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Username</mat-label>
+        <input type="text" matInput formControlName="login">
+        <mat-error>Please fill in this field</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Email</mat-label>
+        <input type="text" matInput formControlName="email">
+        <mat-error>Please enter a valid email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Password</mat-label>
+        <input type="password" matInput formControlName="password">
+        <mat-error>Please fill in this field</mat-error>
+      </mat-form-field>
+
+      <div class="form-controls">
+        <button mat-flat-button color="primary" type="submit">Sign up</button>
+      </div>
+
+      <div class="form-links">
+        <a routerLink="/login">Already have an account? Sign in now</a>
+      </div>
+    </form>
+  </div>
+</div>

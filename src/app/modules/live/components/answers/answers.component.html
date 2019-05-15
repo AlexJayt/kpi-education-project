@@ -1,0 +1,12 @@
+<div class="answers-wrapper" *ngIf="answers">
+  <h3>Answers</h3>
+  <div class="answer" *ngFor="let answer of answers">
+    {{answer.text}}
+  </div>
+
+  <div *ngIf="!answers.length">
+    No answers yet
+  </div>
+
+  <app-new-answer-form style="margin-top: 20px"></app-new-answer-form>
+</div>
