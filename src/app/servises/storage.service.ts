@@ -6,13 +6,13 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class StorageService {
 
-  private group = 'ti-51';
+  group = 'ti-51';
 
-  private questions;
-  private lectures;
-  private subjects;
-  private answers;
-  private live;
+  questions;
+  lectures;
+  subjects;
+  answers;
+  live;
 
   constructor(private db: AngularFireDatabase) {
   }
