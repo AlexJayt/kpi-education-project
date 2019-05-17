@@ -109,4 +109,36 @@ a {
   border-radius: 5px;
   background: white;
   padding: 10px;
+  justify-content: space-between;
+}
+
+.subject {
+  margin-bottom: 10px;
+  border: 1px solid $dark-dividers;
+  border-radius: 5px;
+  background: white;
+  padding: 20px;
+  cursor: pointer;
+  max-width: 600px;
+  display: block;
+  color: black;
+
+  h4 {
+    margin: 0 0 10px;
+  }
+}
+
+.content-stub-wrapper .round-loader-wrapper {
+  background-color: #fafafa !important;
+}
+.text-wrapping {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.error-snack-bar-message {
+  @extend .text-wrapping;
+  background-color: mat-color($candy-app-warn);
+  color: white;
 }

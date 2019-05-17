@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LiveService } from '../../../../servises/live.service';
+import { Answer } from '../../../../models/answer';
+import { UsersService } from '../../../../servises/users.service';
+import { User } from '../../../../models/user';
 
 @Component({
   selector: 'app-answers',
@@ -8,13 +11,21 @@ import { LiveService } from '../../../../servises/live.service';
 })
 export class AnswersComponent implements OnInit {
 
-  answers;
+  answers: Answer[];
 
-  constructor(private live: LiveService) {
+  constructor(public live: LiveService, private users: UsersService) {
+  }
+
+  get user(): User {
+    return this.users.user;
   }
 
   ngOnInit() {
     this.live.answers$.subscribe(data => this.answers = data);
+  }
+
+  onToggle(answer) {
+    this.live.toggle(answer);
   }
 
 

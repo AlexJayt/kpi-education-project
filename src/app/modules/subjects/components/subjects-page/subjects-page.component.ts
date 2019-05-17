@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SubjectsService } from '../../../../servises/subjects.service';
+import { Subject } from '../../../../models/subject';
 
 @Component({
   selector: 'app-subjects-page',
@@ -8,12 +9,13 @@ import { SubjectsService } from '../../../../servises/subjects.service';
 })
 export class SubjectsPageComponent implements OnInit {
 
-  subjects: any[];
+  subjects: Subject[];
 
   constructor(private subjectsService: SubjectsService) {
   }
 
   ngOnInit() {
+    this.subjectsService.loadSubjects().subscribe(data => this.subjects = data);
   }
 
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Lecture } from '../../../../models/lecture';
+import { SubjectsService } from '../../../../servises/subjects.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-subject-details-page',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectDetailsPageComponent implements OnInit {
 
-  constructor() { }
+  lectures: Lecture[];
+
+  constructor(private subjectsService: SubjectsService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    this.subjectsService.loadLectures(this.route.snapshot.params.id).subscribe(data => this.lectures = data);
   }
 
 }

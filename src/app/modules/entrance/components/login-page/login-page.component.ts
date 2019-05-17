@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthorizationService } from '../../../../servises/authorization.service';
+import { UsersService } from '../../../../servises/users.service';
+import { finalize } from 'rxjs/operators';
+import { MessageService } from '../../../../message/services/message.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,8 +13,9 @@ import { AuthorizationService } from '../../../../servises/authorization.service
 export class LoginPageComponent implements OnInit {
 
   form: FormGroup;
+  loading = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private authorization: AuthorizationService) {
+  constructor(private fb: FormBuilder, private router: Router, private users: UsersService, private message: MessageService) {
   }
 
   ngOnInit() {
@@ -28,8 +31,12 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      this.authorization.login(this.form.get('login').value, this.form.get('password').value)
-        .subscribe(() => this.router.navigate(['/app']));
+      this.loading = true;
+      this.users.login(this.form.get('login').value, this.form.get('password').value).pipe(
+        finalize(() => this.loading = false),
+      ).subscribe({
+        error: error => this.message.error(error.message),
+      });
     }
   }
 

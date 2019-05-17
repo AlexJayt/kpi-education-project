@@ -4,19 +4,21 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { StorageService } from './storage.service';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { v4 as uuid } from 'uuid';
+import { Live } from '../models/live';
+import { Question } from '../models/question';
+import { Answer } from '../models/answer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LiveService {
 
-  private questionsSubject = new BehaviorSubject(null);
-  private answersSubject = new BehaviorSubject(null);
+  private questionsSubject: BehaviorSubject<Question[]> = new BehaviorSubject(null);
+  private answersSubject: BehaviorSubject<Answer[]> = new BehaviorSubject(null);
   questions$ = this.questionsSubject.asObservable();
   answers$ = this.answersSubject.asObservable();
   selectedQuestion;
-  lecture;
+  lecture: Live;
 
   constructor(private store: AngularFirestore, private db: AngularFireDatabase, private storage: StorageService) {
   }
@@ -41,25 +43,31 @@ export class LiveService {
 
   setSelectedQuestion(q) {
     this.selectedQuestion = q;
-    this.loadAnswers(q.id);
+    return this.loadAnswers(q.id);
   }
 
   sendAnswer(text) {
     const answer = {
-      id: uuid(),
+      id: this.selectedQuestion.id + this.answersSubject.value.length.toString(),
       questionId: this.selectedQuestion.id,
       text,
+      accepted: false,
     };
 
-    this.storage.answers.push(answer);
+    this.storage.answers.set(this.selectedQuestion.id + this.answersSubject.value.length.toString(), answer);
   }
 
   sendQuestion(text) {
     const question = {
-      id: uuid(),
+      id: this.lecture.lecture + this.questionsSubject.value.length.toString(),
       text,
       lectureId: this.lecture.lecture,
     };
-    this.storage.questions.push(question);
+    this.storage.questions.set(this.lecture.lecture + this.questionsSubject.value.length.toString(), question);
+  }
+
+  toggle(answer: Answer) {
+    answer.accepted = !answer.accepted;
+    this.storage.answers.set(answer.id, answer);
   }
 }

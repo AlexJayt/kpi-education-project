@@ -1,5 +1,12 @@
 <h3>Subjects</h3>
 
-<div class="subject">
-
-</div>
+<app-loader-stub [loading]="!subjects">
+  <div class="subjects" *ngIf="subjects">
+    <a class="subject" *ngFor="let subject of subjects" [routerLink]="subject.id">
+      <h4>{{subject.name}}</h4>
+      <div>
+        <i>{{ subject.description }}</i>
+      </div>
+    </a>
+  </div>
+</app-loader-stub>

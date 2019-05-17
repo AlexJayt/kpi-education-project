@@ -1,0 +1,6 @@
+<div #ref>
+  <ng-content></ng-content>
+</div>
+<div *ngIf="!ref.childNodes.length || !hasContent(ref.childNodes)">
+  <div class="content-stub-wrapper" [ngStyle]="{'height': height}" [appLoading]="true"></div>
+</div>

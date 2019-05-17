@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StorageService } from './servises/storage.service';
+import { UsersService } from './servises/users.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { StorageService } from './servises/storage.service';
 })
 export class AppComponent {
 
-  constructor(private storage: StorageService) {
+  constructor(private storage: StorageService, private users: UsersService) {
     this.storage.load();
+    this.users.loadUser().subscribe();
   }
 }

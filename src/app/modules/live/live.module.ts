@@ -7,8 +7,9 @@ import { NewQuestionFormComponent } from './components/new-question-form/new-que
 import { QuestionsComponent } from './components/questions/questions.component';
 import { AnswersComponent } from './components/answers/answers.component';
 import { NewAnswerFormComponent } from './components/new-answer-form/new-answer-form.component';
-import { MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingModule } from '../../loading/loading.module';
 
 @NgModule({
   declarations: [LivePageComponent, NewQuestionFormComponent, QuestionsComponent, AnswersComponent, NewAnswerFormComponent],
@@ -21,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    LoadingModule,
+    MatIconModule,
   ],
   entryComponents: [
     NewQuestionFormComponent,

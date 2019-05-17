@@ -7,6 +7,8 @@ import { ENTRANCE_ROUTING } from './entrance.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
+import { MessageModule } from '../../message/message.module';
+import { LoadingModule } from '../../loading/loading.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { MatInputModule } from '@angular/material';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MessageModule,
+    LoadingModule,
     RouterModule.forChild(ENTRANCE_ROUTING),
     MatButtonModule,
     MatFormFieldModule,

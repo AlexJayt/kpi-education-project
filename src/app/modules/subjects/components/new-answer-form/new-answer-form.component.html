@@ -1,0 +1,7 @@
+<form action="" style="display: flex; align-items: stretch; width: 100%">
+  <mat-form-field floatLabel="never" appearance="outline" style="width: calc(100% - 58px)">
+    <mat-label>Type your answer...</mat-label>
+    <input matInput [(ngModel)]="message" name="message">
+  </mat-form-field>
+  <button style="margin: 4px 0 26px 10px" mat-flat-button color="primary" (click)="onSend()">Send</button>
+</form>

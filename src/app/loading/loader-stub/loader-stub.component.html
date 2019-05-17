@@ -1,0 +1,6 @@
+<div>
+  <ng-content></ng-content>
+</div>
+<div *ngIf="loading">
+  <div class="content-stub-wrapper" [ngStyle]="{'height': height}" [appLoading]="true"></div>
+</div>

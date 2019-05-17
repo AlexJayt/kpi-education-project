@@ -1,3 +1,9 @@
-<p>
-  subject-details-page works!
-</p>
+<h3>Lectures</h3>
+
+<app-loader-stub [loading]="!lectures">
+  <div class="subjects" *ngIf="lectures">
+    <a class="subject" *ngFor="let lecture of lectures" [routerLink]="lecture.id">
+      <h4>{{ lecture.description }}</h4>
+    </a>
+  </div>
+</app-loader-stub>
