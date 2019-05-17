@@ -1,7 +1,9 @@
 <div>
   <h3>Lecture</h3>
-  <div *ngFor="let question of questions" class="question" (click)="onSelect(question)" [class.selected]="selected && question.id === selected.id">
-    {{ question.text }}
+  <div *ngFor="let question of questions">
+    <div class="question" (click)="onSelect(question)" [class.selected]="selected && question.id === selected.id">
+      {{ question.text }}
+    </div>
   </div>
   <button mat-flat-button color="primary" style="width: 100%; margin-top: 20px" (click)="onAsk()">Ask something</button>
 </div>
