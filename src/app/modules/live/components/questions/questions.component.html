@@ -1,5 +1,5 @@
 <div>
-  <h3>Lecture</h3>
+  <h3>Lecture <span *ngIf="lecture">{{lecture.lectureName}}</span></h3>
   <app-loader-stub [loading]="!questions">
     <div *ngIf="questions">
       <div *ngFor="let question of questions">

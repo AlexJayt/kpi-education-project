@@ -22,6 +22,10 @@ export class QuestionsComponent implements OnInit {
     return this.live.selectedQuestion;
   }
 
+  get lecture() {
+    return this.live.lecture;
+  }
+
   ngOnInit() {
     this.live.loadQuestions();
     this.live.questions$.subscribe(data => this.questions = data);
